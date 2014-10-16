@@ -1,0 +1,35 @@
+class UsersController < ApplicationController
+  def index
+    if session['access_token']
+      @user = session['user']
+      render :home
+    else
+      render :index
+    end
+  end
+  def login
+    uri = URI.parse('https://getpocket.com/v3/oauth/request')
+    response = Net::HTTP.post_form(uri, { 
+      consumer_key: ENV['q_consumer_key'],
+      redirect_uri: ENV['q_redirect_uri']
+    })
+    session['request_token'] = response.body.split("=")[1]
+    redirect_to "https://getpocket.com/auth/authorize?request_token=#{session['request_token']}&redirect_uri=#{ENV['q_redirect_uri']}"
+  end
+  def new
+    uri = URI.parse('https://getpocket.com/v3/oauth/authorize')
+    response = Net::HTTP.post_form(uri, { 
+      consumer_key: ENV['q_consumer_key'],
+      code: session['request_token']
+    })
+    data = CGI::parse( response.body )
+    session['access_token'] = data['access_token']
+    session['user'] = data['username'][0]
+    redirect_to '/'
+  end
+  def logout
+    session['access_token'] = nil
+    session['user'] = nil
+    redirect_to ''
+  end
+end
