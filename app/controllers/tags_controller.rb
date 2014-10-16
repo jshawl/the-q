@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def index
     @u = User.find_by( username: params[:user] )
-    @tags = @u.tags
+    @tags = @u.tags.distinct
   end
   def show
     user = params[:user]
