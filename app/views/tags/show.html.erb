@@ -1,0 +1,4 @@
+<% @items.each do |item| %>
+  <h2><%= link_to item.title, item.url %></h2>
+  <small><%= link_to item.url, item.url %></small>
+<% end %>

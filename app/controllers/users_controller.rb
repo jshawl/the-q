@@ -1,7 +1,16 @@
+
 class UsersController < ApplicationController
   def index
     if session['access_token']
       @user = session['user']
+      uri = URI.parse('https://getpocket.com/v3/get')
+      response = Net::HTTP.post_form(uri, { 
+	consumer_key: ENV['q_consumer_key'],
+	access_token: session['access_token'],
+	detailType: 'complete',
+	count: 10
+      })
+      @tags = User.find(1).tags
       render :home
     else
       render :index
