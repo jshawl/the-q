@@ -1,3 +1,5 @@
+<h2><%= link_to @u.username, '/'+ @u.username %></h2>
+<h3>Items tagged <%= @tag %></h3>
 <% @items.each do |item| %>
   <h2><%= link_to item.title, item.url %></h2>
   <small><%= link_to item.url, item.url %></small>

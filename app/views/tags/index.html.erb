@@ -1,3 +1,5 @@
+<h2><%= link_to @u.username, '/'+@u.username  %> </h2>
+
 <% @tags.each do |tag| %>
-  <li><a href='/jshawl/<%= tag.name %>'><%= tag.name %></a></li>
+  <li><a href='/jshawl/<%= tag %>'><%= tag %></a></li>
 <% end %>

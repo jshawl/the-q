@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 	access_token: session['access_token'],
 	detailType: 'complete'
       })
-      @tags = User.find_by( username: @user ).tags.distinct
-      render :home
+      @tags = User.find_by( username: @user ).tags
+      redirect_to '/'+ @user 
     else
       render :index
     end
