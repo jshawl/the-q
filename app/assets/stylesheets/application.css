@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  max-width:40em;
+  margin:auto;
+  font-family:'Helvetica Neue', Helvetica, sans-serif;
+}
