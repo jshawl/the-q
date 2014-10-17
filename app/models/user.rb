@@ -23,8 +23,10 @@ class User < ActiveRecord::Base
       if item['tags']
 	tags = item['tags'].map{ |name, con| name }
 	tags.each do |tag|
-	  @tag = Tag.create( name: tag )
-	  Tagging.create( user: @user, tag: @tag, item: @item)
+	  @tag = @user.tags.find_or_create_by( name: tag )
+	  @tag.user = @user
+	  @tag.save
+	  @item.tags.find_or_create_by( name: tag )
 	end
       end
     end

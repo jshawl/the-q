@@ -1,5 +1,7 @@
 <h2><%= link_to @u.username, '/'+@u.username  %> </h2>
 
 <% @tags.each do |tag| %>
-  <li><a href='/jshawl/<%= tag %>'><%= tag %></a></li>
+  <% if tag.public || @u.username == session['user'] %>
+    <li><a href='/jshawl/<%= tag.name %>'><%= tag.name %></a></li>
+  <% end %>
 <% end %>

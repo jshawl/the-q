@@ -1,5 +1,13 @@
 <h2><%= link_to @u.username, '/'+ @u.username %></h2>
-<h3>Items tagged <%= @tag %></h3>
+<h3>Items tagged <%= @tag.name %></h3>
+
+<%= form_for [@u, @tag] do |f| %>
+  <label>
+    <%= f.check_box :public  %>
+    make public?
+    <%= f.submit %>
+</label>
+<% end %>
 <% @items.each do |item| %>
   <h2><%= link_to item.title, item.url %></h2>
   <small><%= link_to item.url, item.url %></small>
