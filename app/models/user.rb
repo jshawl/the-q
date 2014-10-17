@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
     response = Net::HTTP.post_form(uri, { 
       consumer_key: ENV['q_consumer_key'],
       access_token: @user.access_token,
-      detailType: 'complete'
+      detailType: 'complete',
+      state: 'all'
     })
     data = JSON.parse( response.body )['list']
     data.each do |pocket_id, item|
