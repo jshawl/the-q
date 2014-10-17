@@ -19,7 +19,11 @@ class User < ActiveRecord::Base
       else
 	title = item['given_title']
       end
-      @item = @user.items.create( pocket_id: pocket_id, title: title, url: item['resolved_url'] )
+      begin
+	@item = @user.items.create( pocket_id: pocket_id, title: title, url: item['resolved_url'] )
+      rescue
+	@item = Item.last
+      end
       @item.save
       if item['tags']
 	tags = item['tags'].map{ |name, con| name }
