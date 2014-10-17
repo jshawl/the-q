@@ -1,6 +1,12 @@
 class TagsController < ApplicationController
   def index
-    @u = User.find_by( username: params[:user] )
+    if params[:format]
+      user = params[:user]+'.' +params[:format]
+    else
+      user = params[:user]
+    end
+    @u = User.find_by( username: user )
+    @current_user = User.find_by( username: session[:user])
     @tags = @u.tags
   end
   def show
@@ -12,6 +18,7 @@ class TagsController < ApplicationController
     if @tag.public || @current_user && @current_user.id == @tag.user_id
       @items = @u.items.joins(:tags).where( :tags => { :name => tag } )
     else
+      @items = []
       raise ActionController::RoutingError.new('Not Found')
     end
   end

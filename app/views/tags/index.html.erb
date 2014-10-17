@@ -2,6 +2,6 @@
 
 <% @tags.each do |tag| %>
   <% if tag.public || @u.username == session['user'] %>
-    <li><a href='/jshawl/<%= tag.name %>'><%= tag.name %></a></li>
+    <li><%= link_to tag.name, '/'+@current_user.username+'/'+ tag.name %>  </li>
   <% end %>
 <% end %>
