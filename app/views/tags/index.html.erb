@@ -2,6 +2,6 @@
 
 <% @tags.each do |tag| %>
   <% if tag.public || @u.username == session['user'] %>
-    <li><%= link_to tag.name, '/'+@current_user.username+'/'+ tag.name %>  </li>
+    <li><%= link_to tag.name, '/'+@u.username+'/'+ tag.name %>  </li>
   <% end %>
 <% end %>
