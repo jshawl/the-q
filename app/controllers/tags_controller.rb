@@ -21,6 +21,10 @@ class TagsController < ApplicationController
       @items = []
       raise ActionController::RoutingError.new('Not Found')
     end
+    respond_to do |format|
+      format.html 
+      format.json { render json: @items }
+    end
   end
   def update
     @tag = Tag.find( params[:id] )

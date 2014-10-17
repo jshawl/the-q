@@ -14,7 +14,6 @@
 <% @items.each do |item| %>
   <div class='item'>
     <h2><%= link_to item.title, item.url %></h2>
-    <%= item.pocket_id %>
     <small><%= link_to item.url, item.url %></small>
   </div>
 <% end %>
