@@ -1,4 +1,4 @@
-<h2><%= link_to @u.username, '/'+@u.username  %> </h2>
+<%= link_to @u.username, '/'+@u.username, class: 'breadcrumb'  %>
 
 <% @tags.each do |tag| %>
   <% if tag.public || @u.username == session['user'] %>

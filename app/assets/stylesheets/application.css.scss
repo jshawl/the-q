@@ -14,8 +14,61 @@
  *= require_self
  */
 
+*{
+  box-sizing:border-box;
+}
+
 body{
-  max-width:40em;
+  max-width:50em;
+  padding:0em 2em 4em;
   margin:auto;
   font-family:'Helvetica Neue', Helvetica, sans-serif;
+  padding-bottom:4em;
+}
+
+h2 a{
+  text-decoration:none;
+  color:inherit
+}
+
+header{
+  border-bottom:1px solid #eee;
+  &:after{
+    content:' ';
+    display:table;
+    clear:both;
+  }
+  & > h1{
+    float:left;
+  }
+  & > a{
+    float:right;
+    line-height:2em;
+    margin:1.5em 0;
+  }
+}
+
+.breadcrumb{
+  display:inline-block;
+  margin:2em 0;
+}
+
+li{
+ line-height:1.5;
+}
+
+.item{
+  border-bottom: 1px solid #eee;
+  padding:2em 0;
+  & > :first-child{
+    margin-top:0;
+    font-size:1.25em;
+  }
+  small a{
+    color:#666;
+    text-decoration:none;
+    &:hover{
+      text-decoration:underline;
+    }
+  }
 }
