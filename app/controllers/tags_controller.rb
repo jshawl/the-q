@@ -8,8 +8,8 @@ class TagsController < ApplicationController
     tag = params[:tag]
     @u = User.find_by( username: params[:user] )
     @tag = @u.tags.find_by( name: tag )
-    current_user = User.find_by( username: session['user'] )
-    if @tag.public || current_user && current_user.id == @tag.user_id
+    @current_user = User.find_by( username: session['user'] )
+    if @tag.public || @current_user && @current_user.id == @tag.user_id
       @items = @u.items.joins(:tags).where( :tags => { :name => tag } )
     else
       raise ActionController::RoutingError.new('Not Found')
