@@ -26,4 +26,19 @@ namespace :users do
       end
     end
   end
+
+  desc "remove empty tags"
+  task :clean => :environment do
+    users = User.all
+    users.each do |user|
+      tags = user.tags 
+      tags.each do |tag|
+	items = user.items.joins(:tags).where( :tags => { :name => tag.name } )
+        if items.length == 0	
+	  tag.destroy
+	end
+      end
+    end
+  end
+  
 end
