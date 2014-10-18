@@ -14,26 +14,7 @@ class User < ActiveRecord::Base
     })
     data = JSON.parse( response.body )['list']
     data.each do |pocket_id, item|
-      if item['given_title'].blank?
-	title = item['resolved_title']
-      else
-	title = item['given_title']
-      end
-      begin
-	@item = @user.items.create( pocket_id: pocket_id, title: title, url: item['resolved_url'] )
-      rescue
-	@item = Item.last
-      end
-      @item.save
-      if item['tags']
-	tags = item['tags'].map{ |name, con| name }
-	tags.each do |tag|
-	  @tag = @user.tags.find_or_create_by( name: tag )
-	  @tag.user = @user
-	  @tag.save
-	  @item.tags.find_or_create_by( name: tag )
-	end
-      end
+      Item.create_from_json item, @user
     end
   end
 end

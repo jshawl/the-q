@@ -20,6 +20,8 @@ namespace :users do
 	if item['status'] == "2"
 	  item = Item.find_by( pocket_id: item['item_id'] )
 	  item && item.destroy
+	else
+          Item.create_from_json item, user
 	end
       end
     end
