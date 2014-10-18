@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     })
     data = JSON.parse( response.body )['list']
     data.each do |pocket_id, item|
-      Item.create_from_json item, @user
+      @item = Item.create_from_json item, @user
     end
   end
 end
