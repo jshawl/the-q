@@ -7,7 +7,7 @@ class TagsController < ApplicationController
     end
     @u = User.find_by( username: user )
     @current_user = User.find_by( username: session[:user])
-    @tags = @u.tags
+    @tags = @u.tags.order('name asc')
   end
   def show
     user = params[:user]
