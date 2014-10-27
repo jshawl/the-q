@@ -1,0 +1,20 @@
+<%= link_to @u.username, '/'+ @u.username, class: 'breadcrumb'%> &raquo; <%= @tag.name %>
+
+
+<% if @current_user && ( @tag.user_id == @current_user.id ) %>
+  <%= form_for [@u, @tag] do |f| %>
+    <label>
+      <%= f.check_box :public  %>
+      make public?
+      <%= f.submit %>
+  </label>
+  <% end %>
+<% end %>
+
+<% @items.each do |item| %>
+  <div class='item'>
+    <h2><%= link_to item.title, item.url %></h2>
+    <small><%= link_to item.url, item.url %></small>
+  </div>
+<% end %>
+

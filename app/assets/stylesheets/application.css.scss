@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  max-width:50em;
+  padding:0em 2em 4em;
+  margin:auto;
+  font-family:'Helvetica Neue', Helvetica, sans-serif;
+  padding-bottom:4em;
+}
+
+h2 a{
+  text-decoration:none;
+  color:inherit
+}
+
+header{
+  border-bottom:1px solid #eee;
+  &:after{
+    content:' ';
+    display:table;
+    clear:both;
+  }
+  & > h1{
+    float:left;
+  }
+  & > a{
+    float:right;
+    line-height:2em;
+    margin:1.5em 0;
+  }
+}
+
+.breadcrumb{
+  display:inline-block;
+  margin:2em 0;
+}
+
+li{
+ line-height:1.5;
+}
+
+.item{
+  border-bottom: 1px solid #eee;
+  padding:2em 0;
+  & > :first-child{
+    margin-top:0;
+    font-size:1.25em;
+  }
+  small a{
+    color:#666;
+    text-decoration:none;
+    &:hover{
+      text-decoration:underline;
+    }
+  }
+}
